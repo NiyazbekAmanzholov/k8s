@@ -1,0 +1,13 @@
+#https://www.youtube.com/watch?v=kGwe8IEDiX4&list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi&index=9
+#15 минута
+apiVersion: v1
+kind: Pod
+metadata:
+    name: my-web #название пода
+spec:
+   containers:
+     - name: container-apache #название контейнера
+       #image: httpd:latest #название образа
+       image: nginx:latest
+       ports:
+         - containerPort: 80 #порт на котором запускаем

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment
+  labels:
+    app: my-k8s-application
+    env: prod
+    owner: Niyaz
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kgb
+  template:
+    metadata:
+      labels:
+        app: kgb # Service will look for those PODS Labels!!!
+    spec:
+      containers:
+        - name: kgb-web
+          image: niyazbek9393/niyazbek9393:latest3
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-single-pod-service
+  labels:
+    env: prod
+    owner: Niyaz
+spec:
+  selector:
+    app: kgb # распространяет этот трафик с этими лэйблами
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80 # Port on Load Balancer
+      targetPort: 80 # Port on POD
+  type: LoadBalancer

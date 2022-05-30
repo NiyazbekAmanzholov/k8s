@@ -1,0 +1,19 @@
+#https://www.youtube.com/watch?v=l2byGad0Kk4&list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi&index=9
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: my-web-deployment
+spec:
+    selector:
+        matchLabels:
+            app: my-web-deployment
+    template:
+        metadata:
+            labels:
+                app: my-web-deployment
+        spec:
+            containers:
+                - name: kgb-web
+                  image: nginx:latest
+                  ports:
+                    - containerPort: 80
